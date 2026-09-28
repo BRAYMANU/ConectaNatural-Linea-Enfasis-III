@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.http.HttpStatus;
+
 import java.util.List;
 
 /**
@@ -51,7 +53,9 @@ public class ProductoController {
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProductoResponse> crear(@Valid @RequestBody ProductoRequest request) {
-        return ResponseEntity.ok(productoService.crear(request));
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(productoService.crear(request));
     }
 
     @PutMapping("/{id}")

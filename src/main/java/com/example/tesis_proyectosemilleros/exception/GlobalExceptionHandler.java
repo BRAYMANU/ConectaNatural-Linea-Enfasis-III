@@ -11,6 +11,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -41,6 +42,26 @@ public class GlobalExceptionHandler {
                 .map(this::formatFieldError)
                 .toList();
         return buildResponse(HttpStatus.BAD_REQUEST, "Errores de validacion", request, details);
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ApiErrorResponse> handleTypeMismatch(
+            MethodArgumentTypeMismatchException ex,
+            HttpServletRequest request) {
+
+        String expectedType = ex.getRequiredType() != null
+                ? ex.getRequiredType().getSimpleName()
+                : "formato esperado";
+
+        String message = "Parametro invalido: '" + ex.getName()
+                + "' debe ser de tipo " + expectedType;
+
+        return buildResponse(
+                HttpStatus.BAD_REQUEST,
+                message,
+                request,
+                null
+        );
     }
 
     @ExceptionHandler(BadCredentialsException.class)
