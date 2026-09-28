@@ -1,0 +1,13 @@
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: classpath:certs/conectanatural-local.p12
+    key-store-type: PKCS12
+    key-store-password: ${app.tls.keystore-password}
+    key-alias: conectanatural
+    enabled-protocols:
+      - TLSv1.3
+    ciphers:
+      - TLS_AES_128_GCM_SHA256
+      - TLS_AES_256_GCM_SHA384

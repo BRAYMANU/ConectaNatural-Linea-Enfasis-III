@@ -1,0 +1,58 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+# =====================================================
+# Configuracion local y datos sensibles
+# =====================================================
+
+# Spring Boot - contiene credenciales locales, JWT y administrador inicial
+/src/main/resources/application.properties
+
+# Frontend - configuracion local
+/frontend/.env
+
+# Archivos generados por las cargas de imagenes
+/uploads/
+
+# Certificados y almacenes de claves
+*.p12
+*.jks
+*.pem
+*.key
+# Archivo local vacio sin uso
+/src/vista.html
